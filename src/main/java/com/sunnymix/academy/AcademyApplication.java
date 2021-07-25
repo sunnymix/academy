@@ -1,7 +1,7 @@
 package com.sunnymix.academy;
 
-import com.sunnymix.academy.user.dao.UserPo;
-import com.sunnymix.academy.user.dao.UserPoDao;
+import com.sunnymix.academy.user.dao.UserData;
+import com.sunnymix.academy.user.dao.UserDataRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,12 +25,12 @@ public class AcademyApplication {
     }
 
     @Autowired
-    private UserPoDao userPoDao;
+    private UserDataRepo userDataRepo;
 
     @GetMapping("/user/{id}")
     public String userName(@PathVariable Long id) {
-        Optional<UserPo> userPo = userPoDao.findById(id);
-        return userPo.map(UserPo::getName).orElse("unknown");
+        Optional<UserData> userPo = userDataRepo.findById(id);
+        return userPo.map(UserData::getName).orElse("unknown");
     }
 
 }
